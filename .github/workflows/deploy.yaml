@@ -1,0 +1,61 @@
+# Simple workflow for deploying static content to GitHub Pages
+name: Deploy static content to Pages
+
+on:
+    # Runs on pushes targeting the default branch
+    push:
+        branches: ["main"]
+
+    # Allows you to run this workflow manually from the Actions tab
+    workflow_dispatch:
+
+# Sets the GITHUB_TOKEN permissions to allow deployment to GitHub Pages
+permissions:
+    contents: read
+    pages: write
+    id-token: write
+
+# Allow one concurrent deployment
+concurrency:
+    group: "pages"
+    cancel-in-progress: true
+
+jobs:
+    # Single deploy job since we're just deploying
+    deploy:
+        environment:
+            name: github-pages
+            url: ${{ steps.deployment.outputs.page_url }}
+        runs-on: ubuntu-latest
+
+        env:
+            VITE_API_KEY: cf1b18a654af8b8511a90a4a1cf51917
+            VITE_FIREBASE_API_KEY: AIzaSyD-JDyqSHCCw_OzyadzQwdPZzvYWvOAzdg
+            VITE_FIREBASE_AUTH_DOMAIN: netflix-clone-react-1c9cb.firebaseapp.com
+            VITE_FIREBASE_PROJECT_ID: netflix-clone-react-1c9cb
+            VITE_FIREBASE_STORAGE_BUCHET: netflix-clone-react-1c9cb.appspot.com
+            VITE_FIREBASE_MESSAGING_SENDER_ID: 631992900654
+            VITE_FIREBASE_APP_ID: 1:631992900654:web:dad5eec6ca502dbd0913bf
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+            - name: Set up Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: 18
+                  cache: "npm"
+            - name: Install dependencies
+              run: npm install
+            - name: Build
+              run: npm run build
+            - name: Setup Pages
+              uses: actions/configure-pages@v3
+            - name: Upload artifact
+              uses: actions/upload-pages-artifact@v1
+              with:
+                  # Upload dist repository
+                  path: "./dist"
+            - name: Deploy to GitHub Pages
+              id: deployment
+              uses: actions/deploy-pages@v1
