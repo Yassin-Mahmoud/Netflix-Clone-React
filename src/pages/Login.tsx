@@ -66,7 +66,7 @@ const Login = () => {
                                         <input
                                             className="mr-2"
                                             type="checkbox"
-                                        />{" "}
+                                        />
                                         Remember me
                                     </p>
                                     <p className="cursor-pointer">Need Help?</p>
@@ -75,7 +75,9 @@ const Login = () => {
                                     <span className="text-gray-600 text-sm mr-2">
                                         New to Netflix?
                                     </span>
-                                    <Link to="/signup">Sign Up</Link>
+                                    <Link to="/Netflix-Clone-React/signup">
+                                        Sign Up
+                                    </Link>
                                 </p>
                             </form>
                         </div>
