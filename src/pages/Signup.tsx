@@ -5,7 +5,7 @@ import { useState } from "react";
 const Signup = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { user, signUp } = UserAuth();
+    const { signUp } = UserAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
