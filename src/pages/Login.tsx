@@ -75,9 +75,7 @@ const Login = () => {
                                     <span className="text-gray-600 text-sm mr-2">
                                         New to Netflix?
                                     </span>
-                                    <Link to="/Netflix-Clone-React/signup">
-                                        Sign Up
-                                    </Link>
+                                    <Link to="/signup">Sign Up</Link>
                                 </p>
                             </form>
                         </div>
